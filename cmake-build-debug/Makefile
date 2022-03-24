@@ -123,6 +123,33 @@ Notebook_b/fast:
 	$(MAKE) -f CMakeFiles/Notebook_b.dir/build.make CMakeFiles/Notebook_b.dir/build
 .PHONY : Notebook_b/fast
 
+Notebook.o: Notebook.cpp.o
+
+.PHONY : Notebook.o
+
+# target to build an object file
+Notebook.cpp.o:
+	$(MAKE) -f CMakeFiles/Notebook_b.dir/build.make CMakeFiles/Notebook_b.dir/Notebook.cpp.o
+.PHONY : Notebook.cpp.o
+
+Notebook.i: Notebook.cpp.i
+
+.PHONY : Notebook.i
+
+# target to preprocess a source file
+Notebook.cpp.i:
+	$(MAKE) -f CMakeFiles/Notebook_b.dir/build.make CMakeFiles/Notebook_b.dir/Notebook.cpp.i
+.PHONY : Notebook.cpp.i
+
+Notebook.s: Notebook.cpp.s
+
+.PHONY : Notebook.s
+
+# target to generate assembly for a file
+Notebook.cpp.s:
+	$(MAKE) -f CMakeFiles/Notebook_b.dir/build.make CMakeFiles/Notebook_b.dir/Notebook.cpp.s
+.PHONY : Notebook.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Notebook_b"
+	@echo "... Notebook.o"
+	@echo "... Notebook.i"
+	@echo "... Notebook.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

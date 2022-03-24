@@ -5,7 +5,7 @@ using namespace doctest;
 const int MIN_TESTS = 20;
 
 
-struct ReporterGrader: public ConsoleReporter { 
+struct ReporterGrader: public ConsoleReporter {
     ReporterGrader(const ContextOptions& input_options)
             : ConsoleReporter(input_options) {}
 

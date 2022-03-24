@@ -6,7 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/97252/Documents/GitHub/Notebook-b/main.cpp
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.cpp
+Notebook.hpp
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.hpp
 iostream
--
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/iostream
+string
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/string
+stdexcept
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/stdexcept
+
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.hpp
+string
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/string
+iostream
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/iostream
+sources/Direction.hpp
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Direction.hpp
+
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Direction.hpp
 
