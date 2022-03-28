@@ -84,13 +84,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.cpp">
-			<Option target="Notebook_b"/>
-		</Unit>
-		<Unit filename="/mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.hpp">
-			<Option target="Notebook_b"/>
-		</Unit>
 		<Unit filename="/mnt/c/Users/97252/Documents/GitHub/Notebook-b/main.cpp">
+			<Option target="Notebook_b"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.cpp">
+			<Option target="Notebook_b"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.hpp">
 			<Option target="Notebook_b"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/97252/Documents/GitHub/Notebook-b/CMakeLists.txt">

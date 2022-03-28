@@ -6,15 +6,29 @@
 #define NOTEBOOK_A_NOTEBOOK_HPP
 
 
+#include <utility>
+
 #include "string"
 #include "iostream"
-#include "sources/Direction.hpp"
+#include "Direction.hpp"
+#include "unordered_map"
+#include "vector"
 
+using namespace std;
 namespace ariel {
 
     class Notebook {
 
+
+     vector<vector<string>> book;
+
+
+
     public:
+        Notebook();
+//        ~Notebook();
+
+
         void write(int page, int row, int column, Direction direction, const std::string &text);
 
         std::string

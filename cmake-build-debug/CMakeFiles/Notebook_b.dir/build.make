@@ -70,29 +70,29 @@ CMakeFiles/Notebook_b.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Notebook_b.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/97252/Documents/GitHub/Notebook-b/main.cpp -o CMakeFiles/Notebook_b.dir/main.cpp.s
 
-CMakeFiles/Notebook_b.dir/Notebook.cpp.o: CMakeFiles/Notebook_b.dir/flags.make
-CMakeFiles/Notebook_b.dir/Notebook.cpp.o: ../Notebook.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/97252/Documents/GitHub/Notebook-b/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Notebook_b.dir/Notebook.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Notebook_b.dir/Notebook.cpp.o -c /mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.cpp
+CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.o: CMakeFiles/Notebook_b.dir/flags.make
+CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.o: ../sources/Notebook.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/97252/Documents/GitHub/Notebook-b/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.o -c /mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.cpp
 
-CMakeFiles/Notebook_b.dir/Notebook.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Notebook_b.dir/Notebook.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.cpp > CMakeFiles/Notebook_b.dir/Notebook.cpp.i
+CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.cpp > CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.i
 
-CMakeFiles/Notebook_b.dir/Notebook.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Notebook_b.dir/Notebook.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/97252/Documents/GitHub/Notebook-b/Notebook.cpp -o CMakeFiles/Notebook_b.dir/Notebook.cpp.s
+CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.cpp -o CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.s
 
 # Object files for target Notebook_b
 Notebook_b_OBJECTS = \
 "CMakeFiles/Notebook_b.dir/main.cpp.o" \
-"CMakeFiles/Notebook_b.dir/Notebook.cpp.o"
+"CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.o"
 
 # External object files for target Notebook_b
 Notebook_b_EXTERNAL_OBJECTS =
 
 Notebook_b: CMakeFiles/Notebook_b.dir/main.cpp.o
-Notebook_b: CMakeFiles/Notebook_b.dir/Notebook.cpp.o
+Notebook_b: CMakeFiles/Notebook_b.dir/sources/Notebook.cpp.o
 Notebook_b: CMakeFiles/Notebook_b.dir/build.make
 Notebook_b: CMakeFiles/Notebook_b.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/97252/Documents/GitHub/Notebook-b/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Notebook_b"

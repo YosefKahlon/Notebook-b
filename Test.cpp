@@ -7,7 +7,7 @@
  */
 
 #include "doctest.h"
-#include "Notebook.hpp"
+#include "sources/Notebook.hpp"
 #include "sources/Direction.hpp"
 
 using namespace ariel;

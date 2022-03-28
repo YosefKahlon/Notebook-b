@@ -3,4 +3,4 @@ project(Notebook_b)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Notebook_b main.cpp Notebook.cpp Notebook.hpp)
+add_executable(Notebook_b main.cpp sources/Notebook.cpp sources/Notebook.hpp)
