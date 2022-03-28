@@ -1,6 +1,7 @@
 //
 // Created by 97252 on 3/22/2022.
 //
+#include "exception"
 #include "Direction.hpp"
 #include "Notebook.hpp"
 #include "iostream"
@@ -23,7 +24,7 @@ Notebook::~Notebook() {
     cout << "done" << endl;
 }
 
-bool negative_num(int num) {
+bool Notebook::negative_num(int num) {
     bool ans = false;
     const int x = 0;
     if (num < x) {
@@ -33,7 +34,7 @@ bool negative_num(int num) {
 
 }
 
-bool invalid_num(int num) {
+bool Notebook::invalid_num(int num) {
     bool ans = false;
     const int x = 99;
     if (num > x) {
@@ -44,7 +45,7 @@ bool invalid_num(int num) {
 }
 
 // https://www.geeksforgeeks.org/check-key-present-cpp-map-unordered_map/
-string check_key(unordered_map<int, unordered_map<int, string>> m, int key) {
+string Notebook::check_key(unordered_map<int, unordered_map<int, string>> m, int key) {
     // Key is not present
     if (m.find(key) == m.end()) {
         return "Not Present";
@@ -53,15 +54,15 @@ string check_key(unordered_map<int, unordered_map<int, string>> m, int key) {
 }
 
 bool Notebook::equal(int page, int row, int column, int len, const std::string &text) {
-    string str;
-    for (int i = 0; i < len; ++i) {
-        str += text.at((unsigned long) i);
-    }
+//    string str;
+//    for (int i = 0; i < len; ++i) {
+//        str += text.at((unsigned long) i);
+//    }
 
 
     if (check_key(this->book, page) == "Present") {
         for (int j = column; j < column + len; j++) {
-            if (this->book[page][row] != str) {
+            if (this->book[page][row][(unsigned long) j] != '_') {
                 //throw std::invalid_argument("You can't write there !!");
                 return true;
             }
@@ -76,11 +77,10 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
 
 
     if (equal(page, row, column, len, text)) {
-        throw std::invalid_argument("You can't write there !!");
+        throw runtime_error("You can't write there !!");
     }
 
     if (negative_num(page)) {
-
         throw std::invalid_argument("Page number start from 0 !!");
     }
     if (negative_num(row)) {
@@ -89,7 +89,7 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
     if (negative_num(column)) {
         throw std::invalid_argument("Column number start from 0 !!");
     }
-    if (invalid_num(column) && invalid_num(len) && invalid_num(column + len)) {
+    if (invalid_num(column) || invalid_num(len) || invalid_num(column + len)) {
         throw std::invalid_argument("No more than 100!!");
     }
 
@@ -116,7 +116,7 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
     if (negative_num(length)) {
         throw std::invalid_argument("Negative length to reading !!");
     }
-    if (invalid_num(column) && invalid_num(length) && invalid_num(column + length)) {
+    if (invalid_num(column) || invalid_num(length) || invalid_num(column + length)) {
         throw std::invalid_argument("No more than 100!!");
     }
     string ans;
@@ -150,7 +150,7 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
     if (negative_num(length)) {
         throw std::invalid_argument("Negative length for erasure !!");
     }
-    if (invalid_num(column + length) && invalid_num(column) && invalid_num(length)) {
+    if (invalid_num(column + length) || invalid_num(column) || invalid_num(length)) {
         throw std::invalid_argument("No more than 100!!");
     }
 

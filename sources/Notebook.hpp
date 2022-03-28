@@ -44,6 +44,12 @@ namespace ariel {
         void vertical(int page, int row, int column, const string *text, int len);
 
         bool equal(int page, int row, int column, int len, const std::string &text);
+
+        static string check_key(unordered_map<int, unordered_map<int, string>> m, int key);
+
+        static bool invalid_num(int num);
+
+        static bool negative_num(int num);
     };
 
 }
