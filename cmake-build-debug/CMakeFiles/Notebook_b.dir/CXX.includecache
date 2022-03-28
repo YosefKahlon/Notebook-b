@@ -6,19 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/97252/Documents/GitHub/Notebook-b/main.cpp
-iostream
--
-sources/Notebook.hpp
-/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.hpp
-sources/Direction.hpp
 /mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Direction.hpp
-unordered_map
-/mnt/c/Users/97252/Documents/GitHub/Notebook-b/unordered_map
-string
-/mnt/c/Users/97252/Documents/GitHub/Notebook-b/string
 
-/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Direction.hpp
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.cpp
+Notebook.hpp
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.hpp
+iostream
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/iostream
+string
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/string
+stdexcept
+/mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/stdexcept
 
 /mnt/c/Users/97252/Documents/GitHub/Notebook-b/sources/Notebook.hpp
 utility

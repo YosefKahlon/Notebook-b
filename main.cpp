@@ -32,9 +32,10 @@ int main() {
 
 
     Notebook a;
-    a.write(2,3,2,Direction::Vertical,"HELLO");
-    a.write(2,4,15,Direction::Vertical,"HELLO");
-    a.write(2,4,50,Direction::Horizontal,"HELLO");
+    a.write(2, 4, 15, Direction::Vertical, "HELLO");
+    a.erase(2, 4, 15, Direction::Vertical, 5);
+//    a.write(2, 4, 3, Direction::Vertical, "HELLO");
+   // cout << a.read(2, 4, 3, Direction::Vertical, 5) << endl;
     a.show(2);
 
 

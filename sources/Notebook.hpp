@@ -39,6 +39,9 @@ namespace ariel {
         void show(int page_number);
 
 
+        void horizontal(int page, int row, int column, const string *pString, int len);
+
+        void Vertical(int page, int row, int column, const string *pString, int len);
     };
 
 }
