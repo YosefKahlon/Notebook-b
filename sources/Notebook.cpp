@@ -6,6 +6,7 @@
 #include "iostream"
 #include "string"
 #include "stdexcept"
+#include "map"
 
 using namespace std;
 using namespace ariel;
@@ -17,9 +18,10 @@ Notebook::Notebook() {
     row[0] = col;
     this->book[0] = row;
 }
-//~Notebook(){
-//    delete unordered_map<>
-//}
+
+Notebook::~Notebook() {
+    cout << "done" << endl;
+}
 
 bool negative_num(int num) {
     bool ans = false;
@@ -33,7 +35,7 @@ bool negative_num(int num) {
 
 bool invalid_num(int num) {
     bool ans = false;
-    const int x = 100;
+    const int x = 99;
     if (num > x) {
         ans = true;
     }
@@ -44,21 +46,41 @@ bool invalid_num(int num) {
 // https://www.geeksforgeeks.org/check-key-present-cpp-map-unordered_map/
 string check_key(unordered_map<int, unordered_map<int, string>> m, int key) {
     // Key is not present
-    if (m.find(key) == m.end())
+    if (m.find(key) == m.end()) {
         return "Not Present";
-
+    }
     return "Present";
+}
+
+bool Notebook::equal(int page, int row, int column, int len, const std::string &text) {
+    string str;
+    for (int i = 0; i < len; ++i) {
+        str += text.at((unsigned long) i);
+    }
+
+
+    if (check_key(this->book, page) == "Present") {
+        for (int j = column; j < column + len; j++) {
+            if (this->book[page][row] != str) {
+                //throw std::invalid_argument("You can't write there !!");
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 void Notebook::write(int page, int row, int column, Direction direction, const std::string &text) {
 
-//TODO FIX ALL THROW
     int len = text.length();
-//    if (!Notebook::read(page, row, column, direction, len).empty()) {
-//        throw std::invalid_argument("You can't write there !!");
-//    }
+
+
+    if (equal(page, row, column, len, text)) {
+        throw std::invalid_argument("You can't write there !!");
+    }
 
     if (negative_num(page)) {
+
         throw std::invalid_argument("Page number start from 0 !!");
     }
     if (negative_num(row)) {
@@ -67,7 +89,7 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
     if (negative_num(column)) {
         throw std::invalid_argument("Column number start from 0 !!");
     }
-    if (invalid_num(column) || invalid_num(len)) {
+    if (invalid_num(column) && invalid_num(len) && invalid_num(column + len)) {
         throw std::invalid_argument("No more than 100!!");
     }
 
@@ -75,10 +97,8 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
         horizontal(page, row, column, &text, len);
 
     } else {
-        Vertical(page, row, column, &text, len);
+        vertical(page, row, column, &text, len);
     }
-
-
 }
 
 
@@ -96,17 +116,19 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
     if (negative_num(length)) {
         throw std::invalid_argument("Negative length to reading !!");
     }
-    if (invalid_num(column) || invalid_num(length)) {
+    if (invalid_num(column) && invalid_num(length) && invalid_num(column + length)) {
         throw std::invalid_argument("No more than 100!!");
     }
     string ans;
     if (direction == Direction::Horizontal) {
         for (int i = column; i < column + length; i++) {
-            ans += this->book[page][row][i];
+            unsigned int index = (unsigned int) (i);
+            ans += this->book[page][row][index];
         }
     } else {
         for (int i = row; i < row + length; i++) {
-            ans += this->book[page][i][column];
+            unsigned char index = (unsigned char) (i);
+            ans += this->book[page][i][index];
         }
     }
 
@@ -128,17 +150,17 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
     if (negative_num(length)) {
         throw std::invalid_argument("Negative length for erasure !!");
     }
-    if (invalid_num(column) || invalid_num(length)) {
+    if (invalid_num(column + length) && invalid_num(column) && invalid_num(length)) {
         throw std::invalid_argument("No more than 100!!");
     }
 
     if (direction == Direction::Horizontal) {
         for (int i = column; i < column + length; i++) {
-            this->book[page][row][i] = '~';
+            this->book[page][row][(unsigned long) i] = '~';
         }
     } else {
         for (int i = row; i < row + length; i++) {
-            this->book[page][i][column] = '~';
+            this->book[page][(unsigned long) i][(unsigned long) column] = '~';
         }
 
     }
@@ -146,15 +168,27 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
 
 }
 
+
 void Notebook::show(int page_number) {
+    if (negative_num(page_number)) {
+        throw std::invalid_argument("Page number start from 0 !!");
+    }
+
+
     cout << "-------------------------------------------- Page Number: " << page_number
          << " --------------------------------------------" << endl;
+    map<int, string> ans;
+
     for (const auto &x: this->book) {
         if (x.first == page_number) {
             for (const auto &y: x.second) {
-                cout << y.first << ". " << y.second << endl;
+                ans.insert(make_pair(y.first, y.second));
             }
         }
+    }
+    //print the line in order
+    for (const auto &x: ans) {
+        cout << x.first << ". " << x.second << endl;
     }
 
 }
@@ -167,13 +201,13 @@ void Notebook::horizontal(int page, int row, int column, const string *text, int
     if (check_key(this->book, page) == "Not Present") {
         unordered_map<int, string> new_row;
         for (int i = 0; i < row; i++) {
-            new_row[i] = line;
+            new_row[(unsigned long) i] = line;
         }
         this->book[page] = new_row;
 
         //Change the char in the line
         for (int i = column; i < column + len; i++) {
-            line.at(i) = text->at(j++);
+            line.at((unsigned long) i) = text->at((unsigned long) j++);
 
 
             this->book[page][row] = line;
@@ -185,17 +219,17 @@ void Notebook::horizontal(int page, int row, int column, const string *text, int
         //not enough row
         if (size_row < row) {
             for (int i = size_row; i <= row; i++) {
-                this->book[page][i] = line;
+                this->book[page][(unsigned long) i] = line;
             }
         }
         //Change the char in correct column
         for (int i = column; i < column + len; i++) {
-            this->book[page][row][i] = text->at(j++);
+            this->book[page][row][(unsigned long) i] = text->at((unsigned long) j++);
         }
     }
 }
 
-void Notebook::Vertical(int page, int row, int column, const string *text, int len) {
+void Notebook::vertical(int page, int row, int column, const string *text, int len) {
     string line = "____________________________________________________________________________________________________";
     int k = 0;
 
@@ -204,14 +238,14 @@ void Notebook::Vertical(int page, int row, int column, const string *text, int l
         unordered_map<int, string> new_row;
         int add_row = len + row;
         for (int i = 0; i < add_row; i++) {
-            new_row[i] = line;
+            new_row[(unsigned long) i] = line;
         }
         this->book[page] = new_row;
 
 
         //Change the char in the line
         for (int i = row; i < row + len && k < len; i++) {
-            this->book[page][i][column] = text->at(k++);
+            this->book[page][(unsigned long) i][(unsigned long) column] = text->at((unsigned long) k++);
         }
     } else {
         k = 0;
@@ -220,14 +254,17 @@ void Notebook::Vertical(int page, int row, int column, const string *text, int l
         //not enough row
         if (size_row < row + len) {
             for (int i = size_row; i <= row + len; i++) {
-                this->book[page][i] = line;
+                this->book[page][(unsigned long) i] = line;
             }
         }
 
         //Change the char in correct line
         for (int i = row; i < row + len && k < len; i++) {
-            this->book[page][i][column] = text->at(k++);
-
+//            unsigned long pos = (unsigned long) (i);
+//            unsigned long pos1 = (unsigned long) (column);
+//            unsigned long ki = (unsigned int) (k);
+            // this->book[page][pos][column] = text->at(k++);
+            this->book.at(page).at((unsigned long) i).at((unsigned long) column) = text->at((unsigned long) k++);
         }
 
     }

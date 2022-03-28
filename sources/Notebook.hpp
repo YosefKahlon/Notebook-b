@@ -26,10 +26,10 @@ namespace ariel {
 
     public:
         Notebook();
-        //~Notebook();
+        ~Notebook();
 
 
-        void write(int page, int row, int column, Direction direction, const std::string &text);
+        void write(int page, int row, int column, Direction direction, const std::string &text) ;
 
         std::string
         read(int page, int row, int column, Direction direction, int length);
@@ -39,9 +39,11 @@ namespace ariel {
         void show(int page_number);
 
 
-        void horizontal(int page, int row, int column, const string *pString, int len);
+        void horizontal(int page, int row, int column, const string *text, int len);
 
-        void Vertical(int page, int row, int column, const string *pString, int len);
+        void vertical(int page, int row, int column, const string *text, int len);
+
+        bool equal(int page, int row, int column, int len, const std::string &text);
     };
 
 }
