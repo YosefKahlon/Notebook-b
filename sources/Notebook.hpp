@@ -26,7 +26,7 @@ namespace ariel {
 
     public:
         Notebook();
-//        ~Notebook();
+        //~Notebook();
 
 
         void write(int page, int row, int column, Direction direction, const std::string &text);

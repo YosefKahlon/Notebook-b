@@ -1,7 +1,7 @@
 //
 // Created by 97252 on 3/22/2022.
 //
-
+#include "Direction.hpp"
 #include "Notebook.hpp"
 #include "iostream"
 #include "string"
@@ -17,7 +17,9 @@ Notebook::Notebook() {
     row[0] = col;
     this->book[0] = row;
 }
-
+//~Notebook(){
+//    delete unordered_map<>
+//}
 
 bool negative_num(int num) {
     bool ans = false;

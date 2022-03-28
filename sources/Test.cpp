@@ -6,9 +6,9 @@
  * Date: 2022 - 3
  */
 
-#include "doctest.h"
-#include "sources/Notebook.hpp"
-#include "sources/Direction.hpp"
+#include "../doctest.h"
+#include "Notebook.hpp"
+#include "Direction.hpp"
 
 using namespace ariel;
 
