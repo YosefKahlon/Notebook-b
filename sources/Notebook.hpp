@@ -20,8 +20,8 @@ namespace ariel {
     class Notebook {
 
 
-     vector<vector<string>> book;
-
+//     vector<vector<string>> book;
+        unordered_map<int, unordered_map<int, string>> book;
 
 
     public:
@@ -37,7 +37,6 @@ namespace ariel {
         void erase(int page, int row, int column, Direction direction, int length);
 
         void show(int page_number);
-
 
 
     };

@@ -13,9 +13,9 @@ using namespace ariel;
 
 Notebook::Notebook() {
     string col = "____________________________________________________________________________________________________";
-    vector<string> v;
-    v.push_back(col);
-    this->book.push_back(v);
+    unordered_map<int, string> row;
+    row[0] = col;
+    this->book[0] = row;
 }
 
 
@@ -39,11 +39,19 @@ bool invalid_num(int num) {
 
 }
 
+// https://www.geeksforgeeks.org/check-key-present-cpp-map-unordered_map/
+string check_key(unordered_map<int, unordered_map<int, string>> m, int key) {
+    // Key is not present
+    if (m.find(key) == m.end())
+        return "Not Present";
+
+    return "Present";
+}
 
 void Notebook::write(int page, int row, int column, Direction direction, const std::string &text) {
 
 
-//    int len = text.length();
+    int len = text.length();
 //    if (!Notebook::read(page, row, column, direction, len).empty()) {
 //        throw std::invalid_argument("You can't write there !!");
 //    }
@@ -62,22 +70,76 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
     //   }
 
 
+    if (direction == Direction::Horizontal) {
 
-    for (int i = 0; i < page; ++i) {
-        if (this->book[i] ){
+        if (check_key(this->book, page) == "Not Present") {
             string col = "____________________________________________________________________________________________________";
-            vector<string> v;
-            v.push_back(col);
-            this->book.push_back(v);
+            int j = 0;
+            unordered_map<int, string> new_row;
+            for (int i = 0; i < row; i++) {
+                new_row[i] = col;
+            }
+            this->book[page] = new_row;
+
+            for (int i = column; i < column + len; i++) {
+                col.at(i) = text.at(j++);
+                this->book[page][row] = col;
+            }
+        } else {
+            int size_row = this->book[page].size();
+            int j = 0;
+            string col = "____________________________________________________________________________________________________";
+            if (size_row < row) {
+                for (int i = size_row; i <= row; i++) {
+                    this->book[page][i] = col;
+                }
+            }
+            for (int i = column; i < column + len; i++) {
+                this->book[page][row][i] = text.at(j++);
+            }
         }
+    } else {
+        int k = 0;
+        if (check_key(this->book, page) == "Not Present") {
+            string col = "____________________________________________________________________________________________________";
+            int j = 0;
+            unordered_map<int, string> new_row;
+            int add_row = len + row;
+            for (int i = 0; i < add_row; i++) {
+                new_row[i] = col;
+            }
+            this->book[page] = new_row;
+
+            for (int i = row; i < row + len && k < len; i++) {
+                this->book[page][i][column] = text.at(k);
+                k++;
+            }
+        } else {
+            k =0;
+            string col = "____________________________________________________________________________________________________";
+            int size_row = this->book[page].size();
+            if (size_row < row + len) {
+                for (int i = size_row; i <= row + len; i++) {
+                    this->book[page][i] = col;
+                }
+                for (int i = row; i < row + len && k < len; i++) {
+                    this->book[page][i][column] = text.at(k);
+                    k++;
+                }
+            }else {
+                for (int i = row; i < row + len && k < len; i++) {
+                    this->book[page][i][column] = text.at(k);
+                    k++;
+                }
+            }
+
+        }
+
     }
 
-
-    for (int i = 0; i < text.length(); ++i) {
-        this->book.at(page).at(row).push_back(text.at(i));
-    }
 
 }
+
 
 std::string
 Notebook::read(int page, int row, int column, Direction direction, int length) {
@@ -127,18 +189,20 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
 }
 
 void Notebook::show(int page_number) {
-
-        for (int j = 0; j < this->book.at(page_number).size(); ++j) {
-            for (int k = 0; k < this->book.at(j).size(); ++k) {
-                cout << k << "."<<this->book.at(j).at(k);
-
+    cout << "-------------------------------------------- Page number: " << page_number
+         << " --------------------------------------------" << endl;
+    for (const auto &x: this->book) {
+        if (x.first == page_number) {
+            for (const auto &y: x.second) {
+                cout << y.first << ". " << y.second << endl;
             }
-            cout << "\n" ;
-
         }
-
+    }
 
 }
+
+
+
 
 
 

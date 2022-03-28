@@ -32,7 +32,9 @@ int main() {
 
 
     Notebook a;
-    a.write(2,0,2,Direction::Horizontal,"HELLO");
+    a.write(2,3,2,Direction::Vertical,"HELLO");
+    a.write(2,4,15,Direction::Vertical,"HELLO");
+    a.write(2,4,50,Direction::Horizontal,"HELLO");
     a.show(2);
 
 
