@@ -10,19 +10,29 @@ using namespace std;
 int main() {
 
 
-    Notebook a;
+    Notebook n;
+    int page0 = 0;
     try {
-    a.write(1,0,0,Direction::Horizontal,"n____n");
-   a.write(1,0,1,Direction::Horizontal,"abcd");
-   a.erase(1,0,0,Direction::Horizontal,5); }
-    catch (exception& e) {
+        n.write(page0, 0, 0, Direction::Horizontal, "Hey");
+        cout << n.read(page0, 0, 0, Direction::Horizontal, 3) << endl;
+        n.write(page0, 14, 0, Direction::Horizontal, "second test");
+        cout <<n.read(page0, 14, 0, Direction::Horizontal, 11) << endl;
+        for (size_t row = 0; row < 13; row++) {
+            for (size_t col = 0; col < 100; col++) {
+                if (row == 0 && col > 3) {
+                    cout << n.read(page0, row, col, Direction::Horizontal, 1)  << endl;//== "_");
+                } else if (row != 0) {
+                   cout << n.read(page0, row, col, Direction::Horizontal, 1) << endl;// == "_");
+                }
+            }
+        }
 
-        e.what();
+    } catch (exception &e) {
+
+        cout << e.what() << endl;
     }
-  //  a.write(-2, 4, 15, Direction::Horizontal, "HELLO");
-//    a.write(2, 4, 3, Direction::Vertical, "HELLO");
-   // cout << a.read(2, 4, 3, Direction::Vertical, 5) << endl;
-    a.show(1);
+
+    n.show(0);
 
 
     return 0;
