@@ -18,7 +18,6 @@ using namespace std;
 namespace ariel {
 
     class Notebook {
-        static constexpr int rowLen = 100;
 
 //     vector<vector<string>> book;
         unordered_map<int, unordered_map<int, string>> book;

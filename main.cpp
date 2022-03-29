@@ -18,8 +18,8 @@ int main() {
        notebook.erase(1, 2, 16, Direction::Horizontal, 12);
        notebook.erase(1, 3, 8, Direction::Horizontal, 30);
        notebook.write(1, 5, 25, Direction::Horizontal, "hello hello");
-      notebook.read(2, 1, 20, Direction::Horizontal, 30);
-       notebook.read(1, 1, 25, Direction::Vertical, 30);
+//      notebook.read(2, 1, 20, Direction::Horizontal, 30);
+//       notebook.read(1, 1, 25, Direction::Vertical, 30);
 ////       notebook.show(3));
 
     }

@@ -80,8 +80,7 @@ bool Notebook::alreadyWroteVert(int page, int row, int column, int len, const st
     if (check_key(this->book, page) == "Present") {
         for (int i = row; i < row + len; ++i) {
             if (!(this->book[page].find(i) == this->book[page].end())) {
-//            for (int j = row; j < row + len; j++) {
-                if (this->book[page][(unsigned long) i][(unsigned long) column] != '_') {
+                if (this->book[page][(unsigned long) i][(unsigned int) column] != '_') {
                     return true;
                 }
             }
@@ -159,11 +158,11 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
     string ans;
     if (direction == Direction::Horizontal) {
         for (int i = column; i < column + length; i++) {
-            ans += this->book[page][row][(unsigned long) i];
+            ans += this->book[page][row][(unsigned int) i];
         }
     } else {
         for (int i = row; i < row + length; i++) {
-            ans += this->book[page][i][(unsigned long) column];
+            ans += this->book[page][i][(unsigned int) column];
         }
     }
 
@@ -201,11 +200,11 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
 
       //  show(page);
         for (int i = column; i < column + length; i++) {
-            this->book[page][row][(unsigned long) i] = '~';
+            this->book[page][row][(unsigned int) i] = '~';
         }
     } else {
         for (int i = row; i < row + length; i++) {
-            this->book[page][(unsigned long) i][(unsigned long) column] = '~';
+            this->book[page][(unsigned long) i][(unsigned int) column] = '~';
         }
 
     }
@@ -213,13 +212,10 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
 
 }
 
-//todo fix
 void Notebook::show(int page_number) {
     if (negative_num(page_number)) {
         throw std::invalid_argument("Page number start from 0 !!");
     }
-
-
     cout << "-------------------------------------------- Page Number: " << page_number
          << " --------------------------------------------" << endl;
     map<int, string> ans;
@@ -228,7 +224,6 @@ void Notebook::show(int page_number) {
         if (x.first == page_number) {
             for (const auto &y: x.second) {
                 ans.insert(make_pair(y.first, y.second));
-                //cout << y.first << ". " << y.second << endl;
             }
         }
     }
@@ -236,6 +231,7 @@ void Notebook::show(int page_number) {
     for (const auto &x: ans) {
         cout << x.first << ". " << x.second << endl;
     }
+
 
 }
 
@@ -252,13 +248,8 @@ void Notebook::horizontal(int page, int row, int column, const string *text, int
         this->book[page] = new_row;
 
         //Change the char in the line
-        //ignore space
         for (int i = column; i < column + len; i++) {
-//            if (text->at((unsigned long) j) == 32) {
-//                line.at((unsigned long) i) = '_';
-////                        text->at((unsigned long) j++);
-//                j++;
-//            } else {
+
             line.at((unsigned long) i) = text->at((unsigned long) j++);
         }
 
@@ -275,12 +266,7 @@ void Notebook::horizontal(int page, int row, int column, const string *text, int
             }
         }
         //Change the char in correct column
-        //ignore space
         for (int i = column; i < column + len; i++) {
-//            if (text->at((unsigned long) j) == 32) {
-//                line.at((unsigned long) i) = '_';
-//                j++;
-//            } else {
             this->book[page][row][(unsigned long) i] = text->at((unsigned long) j++);
         }
 
@@ -323,12 +309,7 @@ void Notebook::vertical(int page, int row, int column, const string *text, int l
         }
 
         //Change the char in correct line
-        //ignore space
         for (int i = row; i < row + len && k < len; i++) {
-//            if (text->at((unsigned long) k) == 32) {
-//                this->book[page][(unsigned long) i][(unsigned long) column] = '_';
-//                k++;
-//            } else {
             this->book[page][(unsigned long) i][(unsigned long) column] = text->at((unsigned long) k++);
         }
     }
