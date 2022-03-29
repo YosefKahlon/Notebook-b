@@ -136,15 +136,15 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
 
 
     // show(page);
-
-    if (invalid_num(column)) {
+    const int one_hundred = 100;
+    if (column >= one_hundred ) {
         throw std::invalid_argument("col  No more than 100!!");
     }
 
     if (direction == Direction::Horizontal) {
-        if (invalid_num(length)) {
+        if (length > one_hundred) {
             throw std::invalid_argument("len  No more than 100!!");
-        } else if ((column + length) > 100) {
+        }  if ((column + length) > one_hundred) {
             throw std::invalid_argument("col + len   No more than 100!!");
         }
 
@@ -159,12 +159,10 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
     string ans;
     if (direction == Direction::Horizontal) {
         for (int i = column; i < column + length; i++) {
-            //unsigned int index = (unsigned int) (i);
             ans += this->book[page][row][(unsigned long) i];
         }
     } else {
         for (int i = row; i < row + length; i++) {
-            unsigned char index = (unsigned char) (i);
             ans += this->book[page][i][(unsigned long) column];
         }
     }
@@ -195,10 +193,13 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
         }
     }
 
+
     if (direction == Direction::Horizontal) {
         if (invalid_num(length) || invalid_num(column + length)) {
             throw std::invalid_argument("No more than 100!!");
         }
+
+      //  show(page);
         for (int i = column; i < column + length; i++) {
             this->book[page][row][(unsigned long) i] = '~';
         }
@@ -212,7 +213,7 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
 
 }
 
-
+//todo fix
 void Notebook::show(int page_number) {
     if (negative_num(page_number)) {
         throw std::invalid_argument("Page number start from 0 !!");
@@ -226,15 +227,15 @@ void Notebook::show(int page_number) {
     for (const auto &x: this->book) {
         if (x.first == page_number) {
             for (const auto &y: x.second) {
-                //ans.insert(make_pair(y.first, y.second));
-                cout << y.first << ". " << y.second << endl;
+                ans.insert(make_pair(y.first, y.second));
+                //cout << y.first << ". " << y.second << endl;
             }
         }
     }
     //print the line in order
-//    for (const auto &x: ans) {
-//        cout << x.first << ". " << x.second << endl;
-//    }
+    for (const auto &x: ans) {
+        cout << x.first << ". " << x.second << endl;
+    }
 
 }
 
@@ -338,7 +339,7 @@ void Notebook::vertical(int page, int row, int column, const string *text, int l
 bool Notebook::invalid_char(const string &text) {
 
     for (int i = 0; i < text.length(); ++i) {
-        if (text.at((unsigned long) i) < 32 || text.at((unsigned long) i) >= 126) {
+        if (text.at((unsigned long) i) < ' ' || text.at((unsigned long) i) >= '~') {
             return true;
         }
     }
@@ -349,7 +350,7 @@ void Notebook::add_row(int page, int row, int column, Direction direction, int l
     string line = "____________________________________________________________________________________________________";
     if (direction == Direction::Horizontal) {
         unordered_map<int, string> new_row;
-        for (int i = 0; i < row; i++) {
+        for (int i = 0; i <= row; i++) {
             new_row[(unsigned long) i] = line;
         }
         this->book[page] = new_row;

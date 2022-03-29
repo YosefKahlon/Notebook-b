@@ -52,17 +52,17 @@ namespace ariel {
 
         static bool negative_num(int num);
 
-        bool invalid_char(const string &basicString);
+        static bool invalid_char(const string &text);
 
         bool alreadyWroteVert(int page, int row, int column, int len, const string &basicString);
 
-        string check_key_row(unordered_map<int, string> m, int key);
+       static string check_key_row(unordered_map<int, string> m, int key);
 
         void add_row(int page, int row, int column, Direction direction,int len);
 
         void extra_row(int page, int row, int column, Direction direction, int length);
 
-        void init_new_row(int page, int row);
+
     };
 
 }
