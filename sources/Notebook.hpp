@@ -18,7 +18,7 @@ using namespace std;
 namespace ariel {
 
     class Notebook {
-
+        static constexpr int rowLen = 100;
 
 //     vector<vector<string>> book;
         unordered_map<int, unordered_map<int, string>> book;
@@ -61,6 +61,8 @@ namespace ariel {
         void add_row(int page, int row, int column, Direction direction,int len);
 
         void extra_row(int page, int row, int column, Direction direction, int length);
+
+        void init_new_row(int page, int row);
     };
 
 }
