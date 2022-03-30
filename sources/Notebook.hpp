@@ -39,9 +39,9 @@ namespace ariel {
         void show(int page_number);
 
 
-        void horizontal(int page, int row, int column, const string *text, int len);
+        void horizontal(int page, int row, int column, Direction direction, const string *text, int len);
 
-        void vertical(int page, int row, int column, const string *text, int len);
+        void vertical(int page, int row, int column, Direction directio, const string *text, int len);
 
         bool alreadyWroteHoriz(int page, int row, int column, int len, const std::string &text);
 
@@ -55,11 +55,11 @@ namespace ariel {
 
         bool alreadyWroteVert(int page, int row, int column, int len, const string &basicString);
 
-       static string check_key_row(unordered_map<int, string> m, int key);
+        static string check_key_row(unordered_map<int, string> m, int key);
 
-        void add_row(int page, int row, int column, Direction direction,int len);
+        void add_row(int page, int row, Direction direction, int len);
 
-        void extra_row(int page, int row, int column, Direction direction, int length);
+        void extra_row(int page, int row, Direction direction, int length);
 
 
     };
